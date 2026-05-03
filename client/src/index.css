@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: 'Cairo', sans-serif;
+    --font-sans: 'Cairo', sans-serif;
+
+    --background: 45 100% 50%; /* #C9A84C gradient start */
+    --foreground: 215 60% 10%; /* #0a1628 */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 215 60% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 60% 10%;
+    
+    --primary: 215 60% 10%; /* Dark navy */
+    --primary-foreground: 45 54% 54%; /* Gold */
+    
+    --secondary: 45 54% 90%;
+    --secondary-foreground: 215 60% 10%;
+    
+    --muted: 45 54% 95%;
+    --muted-foreground: 215 20% 40%;
+    
+    --accent: 45 100% 50%;
+    --accent-foreground: 215 60% 10%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 45 54% 54% / 0.5;
+    --input: 45 54% 95%;
+    --ring: 45 54% 54%;
+
+    --radius: 1.5rem;
+  }
+
+  body {
+    @apply font-sans antialiased text-foreground min-h-screen overflow-x-hidden;
+    background: linear-gradient(135deg, #C9A84C 0%, #FFD700 100%);
+    direction: rtl;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-md border-2 border-[#C9A84C]/50 shadow-[0_10px_40px_rgba(201,168,76,0.2)] transition-all duration-500 hover:shadow-[0_20px_60px_rgba(201,168,76,0.3)] hover:border-[#C9A84C];
+  }
+  
+  .glass-input {
+    @apply w-full px-4 py-4 rounded-2xl bg-white/50 border-2 border-[#C9A84C]/20 text-[#0a1628] placeholder:text-[#0a1628]/40 focus:outline-none focus:border-[#C9A84C] focus:ring-2 focus:ring-[#C9A84C]/20 transition-all duration-300;
+  }
+
+  .shimmer-button {
+    @apply relative overflow-hidden bg-[#0a1628] text-[#C9A84C] font-bold py-4 px-8 rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl;
+  }
+
+  .shimmer-button::after {
+    content: '';
+    @apply absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg];
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    100% { left: 200%; }
+  }
+
+  .particles-container {
+    @apply fixed inset-0 pointer-events-none z-0;
+  }
+
+  .particle {
+    @apply absolute bg-[#FFD700] rounded-full opacity-30;
+    animation: float var(--duration) ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-100px) translateX(20px); }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fdf6e3;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A84C;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B08D3A;
+}
